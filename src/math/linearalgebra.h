@@ -2,7 +2,7 @@
 #define LINEARALGEBRA_H
 
 #include <glm/glm.hpp>
-#include <Eigen/Dense>
+#include <eigen/Dense>
 #include <vector>
 
 static std::vector<Eigen::Vector3f> trans_vector(std::vector<glm::vec3> points)

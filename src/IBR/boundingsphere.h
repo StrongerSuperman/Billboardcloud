@@ -34,7 +34,7 @@ public:
 		std::vector<Plane> tangenPlanes;
 		// currently we employ the "Fibonacci sphere point" instead of the "minimal discrete energy method" mentioned in the paper
 		std::vector<glm::vec3> samplePoints = gen_fibonacci_sphere_point(center, radius, k);
-		for (auto point : samplePoints)
+		for (auto& point : samplePoints)
 		{
 			glm::vec3 normal = glm::normalize(point - center);
 			if (glm::dot(point, normal) < 0)
@@ -54,7 +54,7 @@ private:
 		float xTmp = 0.0f;
 		float yTmp = 0.0f;
 		float zTmp = 0.0f;
-		for (auto triangle : triangles)
+		for (auto& triangle : triangles)
 		{
 			xTmp += triangle.getCentriod().x;
 			yTmp += triangle.getCentriod().y;

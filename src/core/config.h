@@ -14,15 +14,8 @@ unsigned int SRC_HEIGHT = 600;
 /// resource path
 std::string resPath;
 
-std::string bbcPath = "../resources/bbc/tree1/";
 
-/// configure the resource path
-void configResPath()
-{
-	char curDir[MAX_PATH];
-	GetCurrentDirectory(MAX_PATH, curDir);
-	std::string curPath(curDir);
-	resPath = curPath + "\\..\\resources";
-}
+#define MAX_PATH_LEN 256
+std::string bbcPath = "..\\assets\\bbc\\tree1\\";
 
 #endif

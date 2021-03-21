@@ -3,10 +3,13 @@
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
+#include <core/config.h>
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
+
+extern std::string resPath;
 
 class Shader
 {
@@ -16,7 +19,11 @@ public:
     /// constructor
     Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath = nullptr)
     {
-		load(vertexPath, fragmentPath);
+		std::string vertex_path(resPath);
+		std::string fragment_path(resPath);
+		vertex_path.append(vertexPath);
+		fragment_path.append(fragmentPath);
+		load(vertex_path.c_str(), fragment_path.c_str());
     }
 
 	/// copy constructor
@@ -65,6 +72,7 @@ public:
 		}
 		catch (std::ifstream::failure e)
 		{
+			std::cout << "Error: " << strerror(errno) << std::endl;
 			std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
 		}
 		const char* vShaderCode = vertexCode.c_str();

@@ -8,28 +8,30 @@
 #include "object/skybox.h"
 #include "object/floor.h"
 #include "object/text.h"
-#include "IBR/billboardclouds.h"
-#include "IBR/imposter.h"
+#include "ibr/billboardclouds.h"
+#include "ibr/imposter.h"
 #include "glfw.h"
 #include "shader.h"
 #include "model.h"
 #include "config.h"
 #include <time.h>
 #include <thread>
+#include <direct.h>
 #include <iostream>
+
+extern std::string resPath;
 
 class Viewer
 {
 public:
-	// constructor
-	Viewer()
-	{
-		configResPath();
-	}
-
 	void view()
 	{
-		configResPath();
+		char buffer[MAX_PATH_LEN];
+		_getcwd(buffer, MAX_PATH_LEN);
+
+		resPath = buffer;
+		resPath.append("\\..\\assets\\");
+
 		std::string demo;
 		while (demo != "demo1" &&
 			demo != "demo2")
@@ -57,26 +59,26 @@ public:
 		glfw.init();
 
 		// shaders
-		Shader floorShader("shaders/floor.vs", "shaders/floor.fs");
-		Shader skyboxShader("shaders/skybox.vs", "shaders/skybox.fs");
-		Shader nanosuitShader("shaders/nanosuit.vs", "shaders/nanosuit.fs");
-		Shader cameraShader("shaders/camera.vs", "shaders/camera.fs");
-		Shader bbRenderShader("shaders/bbRender.vs", "shaders/bbRender.fs");
-		Shader bbTexGenShader("shaders/bbTextureGen.vs", "shaders/bbTextureGen.fs");
-		Shader imposterRenderShader("shaders/imposterRender.vs", "shaders/imposterRender.fs");
-		Shader imposterTexGenShader("shaders/imposterTextureGen.vs", "shaders/imposterTextureGen.fs");
+		Shader floorShader("shaders\\floor.vs", "shaders\\floor.fs");
+		Shader skyboxShader("shaders\\skybox.vs", "shaders\\skybox.fs");
+		Shader nanosuitShader("shaders\\nanosuit.vs", "shaders\\nanosuit.fs");
+		Shader cameraShader("shaders\\camera.vs", "shaders\\camera.fs");
+		Shader bbRenderShader("shaders\\bbRender.vs", "shaders\\bbRender.fs");
+		Shader bbTexGenShader("shaders\\bbTextureGen.vs", "shaders\\bbTextureGen.fs");
+		Shader imposterRenderShader("shaders\\imposterRender.vs", "shaders\\imposterRender.fs");
+		Shader imposterTexGenShader("shaders\\imposterTextureGen.vs", "shaders\\imposterTextureGen.fs");
 
 		// path
-		std::string flrPath = resPath + "\\textures\\chess.jpg";
+		std::string flrPath = resPath + "textures\\chess.jpg";
 		std::vector<std::string> skyboxPath;
-		skyboxPath.emplace_back(resPath + "\\textures\\skybox\\right.jpg");
-		skyboxPath.emplace_back(resPath + "\\textures\\skybox\\left.jpg");
-		skyboxPath.emplace_back(resPath + "\\textures\\skybox\\top.jpg");
-		skyboxPath.emplace_back(resPath + "\\textures\\skybox\\bottom.jpg");
-		skyboxPath.emplace_back(resPath + "\\textures\\skybox\\front.jpg");
-		skyboxPath.emplace_back(resPath + "\\textures\\skybox\\back.jpg");
-		std::string nanosuitPath = resPath + "\\objects\\nanosuit\\nanosuit.obj";
-		std::string cameraPath = resPath + "\\objects\\camera\\camera.obj";
+		skyboxPath.emplace_back(resPath + "textures\\skybox\\right.jpg");
+		skyboxPath.emplace_back(resPath + "textures\\skybox\\left.jpg");
+		skyboxPath.emplace_back(resPath + "textures\\skybox\\top.jpg");
+		skyboxPath.emplace_back(resPath + "textures\\skybox\\bottom.jpg");
+		skyboxPath.emplace_back(resPath + "textures\\skybox\\front.jpg");
+		skyboxPath.emplace_back(resPath + "textures\\skybox\\back.jpg");
+		std::string nanosuitPath = resPath + "objects\\nanosuit\\nanosuit.obj";
+		std::string cameraPath = resPath + "objects\\camera\\camera.obj";
 
 		// texture
 		unsigned int floorTexture = loadTexture(flrPath.c_str());
@@ -119,7 +121,7 @@ public:
 		{
 			glfw.updateState();
 
-			// render the nanusuit
+			// render the nanosuit
 			nanosuit.position = glm::vec3(0.0f, -1.5f, 0.0f);
 			nanosuit.scale = glm::vec3(0.2f, 0.2f, 0.2f);
 			nanosuit.render(nanosuitShader);
@@ -191,14 +193,14 @@ public:
 		glfw.init();
 
 		// path
-		std::string treePath = resPath + "\\objects\\tree1\\tree.obj";
-		std::string fontPath = "../resources/fonts/arial.ttf";
+		std::string treePath = resPath + "objects\\tree1\\tree.obj";
+		std::string fontPath = resPath + "fonts\\arial.ttf";
 
 		// shaders
-		Shader textShader("shaders/text.vs", "shaders/text.fs");
-		Shader treeShader("shaders/tree1.vs", "shaders/tree1.fs");
-		Shader bbcRenderShader("shaders/bbRender.vs", "shaders/bbRender.fs");
-		Shader bbcTextureGenShader("shaders/bbTextureGen.vs", "shaders/bbTextureGen.fs");
+		Shader textShader("shaders\\text.vs", "shaders\\text.fs");
+		Shader treeShader("shaders\\tree1.vs", "shaders\\tree1.fs");
+		Shader bbcRenderShader("shaders/bbRender.vs", "shaders\\bbRender.fs");
+		Shader bbcTextureGenShader("shaders\\bbTextureGen.vs", "shaders\\bbTextureGen.fs");
 
 		// object
 		std::cout << "INFO: loading model..." << std::endl;
