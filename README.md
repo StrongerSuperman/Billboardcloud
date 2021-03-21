@@ -1,8 +1,8 @@
 # Billboardcloud
 ## note
 + Library:  
-[GLFW](http://www.glfw.org/)   
-[Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page)    
+[glfw](http://www.glfw.org/)   
+[eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page)    
 [stb](https://github.com/nothings/stb)  
 [assimp](http://www.assimp.org/)  
 [glm](https://glm.g-truc.net/0.9.9/index.html)  
