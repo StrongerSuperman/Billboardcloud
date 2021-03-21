@@ -6,11 +6,11 @@ set(TARGET Billboardcloud)
 
 set(HEADERS)
 set(SOURCES)
-file(GLOB_RECURSE HEADERS ${CMAKE_SOURCE_DIR}/src/*.h)
-file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.c*)
+file(GLOB_RECURSE HEADERS ${CMAKE_SOURCE_DIR}/engine/src/*.h)
+file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/engine/src/*.c*)
 
-include_directories(${CMAKE_SOURCE_DIR}/3rd)
-include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_SOURCE_DIR}/engine/3rd)
+include_directories(${CMAKE_SOURCE_DIR}/engine/src)
 
 source_group(TREE "${CMAKE_SOURCE_DIR}" FILES ${HEADERS} ${SOURCES})
 
@@ -29,28 +29,28 @@ if(DEBUG_MODE)
     set(CMAKE_BUILD_TYPE "Debug")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
     target_link_libraries(${TARGET}
-        "${CMAKE_SOURCE_DIR}/3rd/assimp/lib/assimp-vc142-mtd.lib"
-        "${CMAKE_SOURCE_DIR}/3rd/freetype/lib/freetype.lib"
-        "${CMAKE_SOURCE_DIR}/3rd/glfw/lib/glfw3.lib"
+        "${CMAKE_SOURCE_DIR}/engine/3rd/assimp/lib/assimp-vc142-mtd.lib"
+        "${CMAKE_SOURCE_DIR}/engine/3rd/freetype/lib/freetype.lib"
+        "${CMAKE_SOURCE_DIR}/engine/3rd/glfw/lib/glfw3.lib"
     )
     add_custom_command(TARGET Billboardcloud POST_BUILD 
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${CMAKE_SOURCE_DIR}/3rd/assimp/dll/assimp-vc142-mtd.dll"
-        "${CMAKE_SOURCE_DIR}/3rd/freetype/dll/freetype.dll"
+        "${CMAKE_SOURCE_DIR}/engine/3rd/assimp/dll/assimp-vc142-mtd.dll"
+        "${CMAKE_SOURCE_DIR}/engine/3rd/freetype/dll/freetype.dll"
         ${CMAKE_SOURCE_DIR}/bin/$<CONFIGURATION>
     )
 else()
     set(CMAKE_BUILD_TYPE "Release")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
     target_link_libraries(${TARGET}
-        "${CMAKE_SOURCE_DIR}/3rd/assimp/lib/assimp-vc142-mt.lib"
-        "${CMAKE_SOURCE_DIR}/3rd/freetype/lib/freetype.lib"
-        "${CMAKE_SOURCE_DIR}/3rd/glfw/lib/glfw3.lib"
+        "${CMAKE_SOURCE_DIR}/engine/3rd/assimp/lib/assimp-vc142-mt.lib"
+        "${CMAKE_SOURCE_DIR}/engine/3rd/freetype/lib/freetype.lib"
+        "${CMAKE_SOURCE_DIR}/engine/3rd/glfw/lib/glfw3.lib"
     )
     add_custom_command(TARGET Billboardcloud POST_BUILD 
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${CMAKE_SOURCE_DIR}/3rd/assimp/dll/assimp-vc142-mt.dll"
-        "${CMAKE_SOURCE_DIR}/3rd/freetype/dll/freetype.dll"
+        "${CMAKE_SOURCE_DIR}/engine/3rd/assimp/dll/assimp-vc142-mt.dll"
+        "${CMAKE_SOURCE_DIR}/engine/3rd/freetype/dll/freetype.dll"
         ${CMAKE_SOURCE_DIR}/bin/$<CONFIGURATION>
     )
 endif()
