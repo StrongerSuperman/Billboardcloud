@@ -17,4 +17,4 @@
 + Any question about this repo, welcome to contact with me(Email:bestrongercxy@163.com, Wechat:cxy10272414)
 
 ## demo
-![image](https://github.com/StrongerSuperman/Billboardcloud/blob/master/resources/demo.jpg)
+![image](https://github.com/StrongerSuperman/Billboardcloud/blob/master/assets/demo.jpg)
