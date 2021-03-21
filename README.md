@@ -14,7 +14,6 @@
 [assimp](http://www.assimp.org/)  
 [glm](https://glm.g-truc.net/0.9.9/index.html)  
 [freetype](https://www.freetype.org/)  
-+ Any question about this repo, welcome to contact with me(Email:bestrongercxy@163.com, Wechat:cxy10272414)
 
 ## demo
 ![image](https://github.com/StrongerSuperman/Billboardcloud/blob/master/assets/demo.jpg)
